@@ -1,13 +1,19 @@
 import React from "react";
 import axios from "axios";
 import MovieCard from "./MovieCard";
+import { Link } from "react-router-dom";
+
 export default class Movie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       movie: null
-    }
+    };
   }
+
+  // item = this.props.items.find(
+  //   thing => `${thing.id}` === this.props.match.params.id
+  // );
 
   componentDidMount() {
     this.fetchMovie(this.props.match.params.id);
@@ -31,11 +37,6 @@ export default class Movie extends React.Component {
     addToSavedList(this.state.movie);
   };
 
-  handleUpdate = e => {
-    e.preventDefault();
-    this.props.history.push(`/update-movie/${this.state.movie.id}`);
-  }
-
   render() {
     if (!this.state.movie) {
       return <div>Loading movie information...</div>;
@@ -47,7 +48,7 @@ export default class Movie extends React.Component {
         <div className="save-button" onClick={this.saveMovie}>
           Save
         </div>
-        <button onClick={this.handleUpdate}>Edit</button>
+        <Link to={`/update-movie/${this.props.match.params.id}`}>Edit</Link>
       </div>
     );
   }
