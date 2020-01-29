@@ -6,7 +6,7 @@ export default class Movie extends React.Component {
     super(props);
     this.state = {
       movie: null
-    };
+    }
   }
 
   componentDidMount() {
@@ -21,7 +21,7 @@ export default class Movie extends React.Component {
 
   fetchMovie = id => {
     axios
-      .get(`http://localhost:5000/api/movies/${id}`)
+      .get(`http://localhost:5001/api/movies/${id}`)
       .then(res => this.setState({ movie: res.data }))
       .catch(err => console.log(err.response));
   };
@@ -30,6 +30,11 @@ export default class Movie extends React.Component {
     const addToSavedList = this.props.addToSavedList;
     addToSavedList(this.state.movie);
   };
+
+  handleUpdate = e => {
+    e.preventDefault();
+    this.props.history.push(`/update-movie/${this.state.movie.id}`);
+  }
 
   render() {
     if (!this.state.movie) {
@@ -42,6 +47,7 @@ export default class Movie extends React.Component {
         <div className="save-button" onClick={this.saveMovie}>
           Save
         </div>
+        <button onClick={this.handleUpdate}>Edit</button>
       </div>
     );
   }
