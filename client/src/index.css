@@ -71,6 +71,12 @@ body {
 .home-button {
   padding: 5px 10px;
   background-color: lightskyblue;
+  display: flex;
+  flex: auto;
+}
+
+.home-button a{
+  margin-right: 3%;
 }
 
 .movie-warning {

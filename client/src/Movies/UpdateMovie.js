@@ -59,7 +59,8 @@ const UpdateMovie = (props) => {
             props.history.push('/')
         })
         .catch(err => console.log(err))
-    }
+    };
+    
     return (
         <div className="update-movie">
             <h2>Edit Movie</h2>
