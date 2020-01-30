@@ -60,9 +60,9 @@ export default class Movie extends React.Component {
         <div className="save-button" onClick={this.saveMovie}>
           Save
         </div>
-        <button><Link to={`/update-movie/${this.props.match.params.id}`}>Edit</Link></button>
+        <Link to={`/update-movie/${this.props.match.params.id}`}><button className="edit">Edit</button></Link>
     
-        <button onClick={this.handleDelete}>Delete</button>
+        <button className="delete" onClick={this.handleDelete}>Delete</button>
       </div>
     );
   }

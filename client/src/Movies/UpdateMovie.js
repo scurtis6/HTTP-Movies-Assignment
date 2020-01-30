@@ -23,27 +23,30 @@ const UpdateMovie = (props) => {
         .catch(err => console.log(err))
     }, [id])
 
-    const handleChange = e => {
-        e.preventDefault();
-        setMovie({
-          ...movie,
-          [e.target.name]: e.target.value
-        })
-        console.log(movie)
-      };
-
-    // const changeHandler = ev => {
-    //     ev.persist();
-    //     let value = ev.target.value;
-    //     if (ev.target.name === 'price') {
-    //       value = parseInt(value, 10);
-    //     }
-    
+    // const handleChange = e => {
+    //     e.preventDefault();
     //     setMovie({
     //       ...movie,
-    //       [ev.target.name]: value
-    //     });
+    //       [e.target.name]: e.target.value
+    //     })
+    //     console.log(movie)
     //   };
+
+    const handleChange = ev => {
+        ev.persist();
+        let value = ev.target.value;
+        setMovie({
+          ...movie,
+          [ev.target.name]: value
+        });
+      };
+
+    const handleStars = event => {
+    setMovie({
+        ...movie,
+        stars: [event.target.value]
+    });
+    };
     
     const handleSumbit = (e) => {
         e.preventDefault();
@@ -58,8 +61,9 @@ const UpdateMovie = (props) => {
         .catch(err => console.log(err))
     }
     return (
-        <div>
-            <form onSubmit={handleSumbit}>
+        <div className="update-movie">
+            <h2>Edit Movie</h2>
+            <form className="update-form" onSubmit={handleSumbit}>
                 <label htmlFor="title">Title: </label>
                     <input 
                     type="text"
@@ -76,7 +80,7 @@ const UpdateMovie = (props) => {
                     onChange={handleChange}
                     value={movie.director}
                     />
-                <label>Metascore: 
+                <label htmlFor="metascore">Metascore: </label>
                     <input 
                     type="text"
                     name="metascore"
@@ -84,13 +88,12 @@ const UpdateMovie = (props) => {
                     onChange={handleChange}
                     value={movie.metascore}
                     />
-                </label>
-                <label>Stars: 
+                <label className="stars">Actors: 
                     <input 
                     type="text"
-                    name="stars"
-                    placeholder="stars"
-                    onChange={handleChange}
+                    name="actors"
+                    placeholder="actors"
+                    onChange={handleStars}
                     value={movie.stars}
                     />
                 </label>
