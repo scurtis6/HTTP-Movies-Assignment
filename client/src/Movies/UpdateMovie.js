@@ -23,23 +23,23 @@ const UpdateMovie = (props) => {
         .catch(err => console.log(err))
     }, [id])
 
-    // const handleChange = e => {
-    //     e.preventDefault();
-    //     setMovie({
-    //       ...movie,
-    //       [e.target.name]: e.target.value
-    //     })
-    //     console.log(movie)
-    //   };
-
-    const handleChange = ev => {
-        ev.persist();
-        let value = ev.target.value;
+    const handleChange = e => {
+        e.preventDefault();
         setMovie({
           ...movie,
-          [ev.target.name]: value
-        });
+          [e.target.name]: e.target.value
+        })
+        console.log(movie)
       };
+
+    // const handleChange = ev => {
+    //     ev.persist();
+    //     let value = ev.target.value;
+    //     setMovie({
+    //       ...movie,
+    //       [ev.target.name]: value
+    //     });
+    //   };
 
     const handleStars = event => {
     setMovie({
@@ -83,7 +83,7 @@ const UpdateMovie = (props) => {
                     />
                 <label htmlFor="metascore">Metascore: </label>
                     <input 
-                    type="text"
+                    type="number"
                     name="metascore"
                     placeholder="metascore"
                     onChange={handleChange}
